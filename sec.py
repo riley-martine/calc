@@ -1,15 +1,8 @@
 from aroc import aroc
-from math import log10, floor, sin
+from math import sqrt, log10, floor, sin
 from tabulate import tabulate
-from inspect import getsourcelines
+from functions import get_source, round_sig
 
-
-def round_sig(x, sig=2):
-    if x == 0:
-        return x
-    if isinstance(x, complex):
-        return "Complex"
-    return round(x, sig-int(floor(log10(abs(x))))-1)
 
 
 def power(x, power):
@@ -20,8 +13,8 @@ def power(x, power):
 
 
 if __name__ == "__main__":
-#    values = [1, 0.1, 0.01, 0.001, -0.001, -0.01, -0.1, -1]
-    values = [2, 1, .5, .01, 0.00000001, -.01, -.5, -1, -2]
+    values = [1, 0.1, 0.01, 0.001, -0.001, -0.01, -0.1, -1]
+   # values = [2, 1, .5, .01, 0.00000001, -.01, -.5, -1, -2]
     functions = [
         (lambda x: x**2, .5),
         (lambda x: .5*sin(x)+2, 0),
@@ -31,6 +24,7 @@ if __name__ == "__main__":
         (lambda x: (power((x-1), (2./3))) - x, 0),
         (lambda x: ((-3*abs(x+2))+6), 2),
         (lambda x: (-3*abs(x+2))+6, -2),
+        (lambda x: sqrt(x), 9),
     ]
 
     for row in functions:
@@ -49,7 +43,7 @@ if __name__ == "__main__":
             #print('------------------------------')
   
         print('\n')
-        print(getsourcelines(f)[0][0].strip()[11:-2])
+        print(get_source(f))
         print(tabulate(d, headers=["delta x", "(x1, f(x1)", "x2, f(x2)",  "AROC"]))
        
 
