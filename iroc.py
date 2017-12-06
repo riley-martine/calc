@@ -1,11 +1,13 @@
 from aroc import aroc
+from math import sqrt
 
 def f(x):
-    return x**2
+    return x**x
 
 def iroc(f, x):
     return aroc(f, x, x+0.00000001)
 
-while True:
-    x = float(input("x: "))
-    print("IROC: ",  iroc(f, x))
+if __name__ == '__main__':
+    while True:
+        x = float(input("x: "))
+        print("IROC: ",  iroc(f, x))
