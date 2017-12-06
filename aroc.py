@@ -2,7 +2,7 @@ import sys
 import math
 
 def d(x):
-    return 1.15*(1.014**x)
+    return x**x
     #return (.2 * (x**3)) - (3 * x)
 
 def aroc(func, start, end):
